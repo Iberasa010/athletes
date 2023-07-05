@@ -1,43 +1,30 @@
 from sanitizer import sanitizer
-
+from opener import open_files
 
 try:
-    with open('james.txt') as james:
-        data = james.readline()
-        james_data = data.strip().split(',')
-        # print(james_data)
-    with open('julie.txt') as julie:
-        data = julie.readline()
-        julie_data = data.strip().split(',')
-        # print(julie_data)
-    with open('mikey.txt') as mikey:
-        data = mikey.readline()
-        mikey_data = data.strip().split(',')
-        # print(mikey_data)
-    with open('sarah.txt') as sarah:
-        data = sarah.readline()
-        sarah_data = data.strip().split(',')
-        # print(sarah_data)
+    james_data = open_files('james.txt')
+    mikey_data = open_files('mikey.txt')
+    julie_data = open_files('julie.txt')
+    sarah_data = open_files('sarah.txt')
 
-    sorted_s = []
-    sorted_ja = []
-    sorted_ju = []
-    sorted_m = []
+    sorted_s = [sanitizer(elem) for elem in sarah_data]
+    sorted_ja = [sanitizer(elem) for elem in james_data]
+    sorted_ju = [sanitizer(elem) for elem in julie_data]
+    sorted_m = [sanitizer(elem) for elem in mikey_data]
 
-    for elem in sarah_data:
-        sorted_s.append(sanitizer(elem))
-    for elem in mikey_data:
-        sorted_m.append(sanitizer(elem))
-    for elem in julie_data:
-        sorted_ju.append(sanitizer(elem))
-    for elem in james_data:
-        sorted_ja.append(sanitizer(elem))
+    james = sorted(set(sorted_s))
+    mikey = sorted(set(sorted_m))
+    julie = sorted(set(sorted_ju))
+    sarah = sorted(set(sorted_ja))
 
-    print(sorted(sorted_s, reverse=True))
-    print(sorted(sorted_m, reverse=True))
-    print(sorted(sorted_ju, reverse=True))
-    print(sorted(sorted_ja, reverse=True))
-
+    print("Best 3 James times: ")
+    print(james[0:3])
+    print("Best 3 Mikey times: ")
+    print(mikey[0:3])
+    print("Best 3 Julie times: ")
+    print(julie[0:3])
+    print("Best 3 Sarah times: ")
+    print(sarah[0:3])
 
 except FileNotFoundError:
     print("The file hasn't been found")
