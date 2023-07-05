@@ -1,17 +1,4 @@
-
-def sanitizer(time_string):
-    # This function turns strings separated with :, - or . and turns them into strings separated by :
-    # It's supposed to work specifically for the james, julie and mikey files which contain those characters
-    # as separators"""
-    if ':' in time_string:
-        return time_string
-    elif '.' in time_string:
-        splitter = '.'
-        (mins, secs) = time_string.split(splitter)
-    else:
-        splitter = '-'
-        (mins, secs) = time_string.split(splitter)
-    return mins + ':' + secs
+from sanitizer import sanitizer
 
 
 try:
@@ -33,8 +20,24 @@ try:
         # print(sarah_data)
 
     sorted_s = []
+    sorted_ja = []
+    sorted_ju = []
+    sorted_m = []
+
     for elem in sarah_data:
-       sorted_s.append(sanitizer(elem))
+        sorted_s.append(sanitizer(elem))
+    for elem in mikey_data:
+        sorted_m.append(sanitizer(elem))
+    for elem in julie_data:
+        sorted_ju.append(sanitizer(elem))
+    for elem in james_data:
+        sorted_ja.append(sanitizer(elem))
+
+    print(sorted(sorted_s, reverse=True))
+    print(sorted(sorted_m, reverse=True))
+    print(sorted(sorted_ju, reverse=True))
+    print(sorted(sorted_ja, reverse=True))
+
 
 except FileNotFoundError:
     print("The file hasn't been found")
