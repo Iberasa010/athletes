@@ -7,10 +7,10 @@ try:
     sarah_data = open_files('sarah2.txt')
 
     print("The athlete's data are: ")
-    print(james_data)
-    print(sarah_data)
-    print(julie_data)
-    print(mikey_data)
+    print(james_data.top3())
+    print(sarah_data.top3())
+    print(julie_data.top3())
+    print(mikey_data.top3())
 
 except FileNotFoundError:
     print("The file hasn't been found")
