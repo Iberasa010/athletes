@@ -1,4 +1,4 @@
-from Athlete import Athlete
+from Athlete import AthleteList
 
 
 def open_files(athlete_file):
@@ -8,7 +8,7 @@ def open_files(athlete_file):
         with open(athlete_file) as generic_file:
             data = generic_file.readline()
             athlete = data.strip().split(',')
-            my_athlete = Athlete(athlete.pop(0), athlete.pop(0), athlete)
+            my_athlete = AthleteList(athlete.pop(0), athlete.pop(0), athlete)
             return my_athlete
 
     except FileNotFoundError:
