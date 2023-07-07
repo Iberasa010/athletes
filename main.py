@@ -26,6 +26,12 @@ try:
     print("Best 3 Sarah times: ")
     print(sarah[0:3])
 
+    sarah_file = open_files('sarah2.txt')
+    sarah = {'Name': sarah_file.pop(0), 'Birthday': sarah_file.pop(0), 'Times': sarah_file}
+    print(sarah['Name'] + "'s fastest times are: " + str(sorted(set([sanitizer(t) for t in sarah["Times"]]))[0:3]))
+
+    # print(sarah_name + "'s fastest times are: " + str(sorted(set([sanitizer(t) for t in sarah]))[0:3]))
+
 except FileNotFoundError:
     print("The file hasn't been found")
 except IOError as ioe:
